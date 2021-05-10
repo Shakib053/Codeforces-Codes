@@ -20,7 +20,8 @@ for(int i=0;i<m;i++)
 { 
  while (sum+dm[j]<ln[i])
  {
-     sum=sum+dm[j++];
+     sum=sum+dm[j];
+  j++;
  }
  cout<<j+1<<" "<<ln[i]-sum<<endl;
   
