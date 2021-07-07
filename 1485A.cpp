@@ -11,7 +11,6 @@ int main()
     {
         ll a, b, mini;
         cin >> a >> b;
-        ll ans = 0;
         if (b > a)
             mini = 1;
         else if (b == a)
@@ -20,12 +19,12 @@ int main()
         {
             ll x = a;
             mini = 1000000;
-            for (int i = b; i < min(b + 30, a); i++)
+            ll ans = 0;
+            for (int i = b; i <= min(b + 30, a); i++)
             {
                 if (i < 2)
                 {
                     i++;
-                    ans++;
                 }
 
                 while (x > 0)
@@ -34,6 +33,7 @@ int main()
                     ans++;
                 }
                 ans = ans + i - b;
+
                 mini = min(ans, mini);
                 ans = 0;
                 x = a;
