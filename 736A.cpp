@@ -10,6 +10,10 @@ int main()
     cin >> t;
     while (t--)
     {
-        }
+        ll x, a = 2, b;
+        cin >> x;
+        b = x - 1;
+        cout << a << " " << b << endl;
+    }
     return 0;
 }

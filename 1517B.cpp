@@ -26,10 +26,10 @@ int main()
             sort(v[i].begin(), v[i].end());
         }
 
-        while (m--)
+        for (int i = 0; i < m; i++)
         {
             int mini = INT_MAX;
-            int index = INT_MIN;
+            int index = -1;
             for (j = 0; j < n; j++)
             {
                 if (v[j][0] < mini)
@@ -42,12 +42,12 @@ int main()
             {
                 if (j == index)
                 {
-                    ans[j].push_back(mini);
+                    ans[j].push_back(v[j][0]);
                     v[j].erase(v[j].begin());
                 }
                 else
                 {
-                    ans[j].push_back(v[j].size() - 1);
+                    ans[j].push_back(v[j][v[j].size() - 1]);
                     v[j].pop_back();
                 }
             }
@@ -55,12 +55,12 @@ int main()
 
         for (int i = 0; i < n; i++)
         {
-            for (int k = 0; k < m; k++)
+            for (int k = 0; k < ans[i].size(); k++)
             {
                 cout << ans[i][k] << " ";
             }
+            cout << endl;
         }
-        cout << endl;
     }
     return 0;
 }
