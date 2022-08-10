@@ -1,4 +1,8 @@
-int t;
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
     cin >> t;
     while (t--)
     {
@@ -12,11 +16,14 @@ int t;
             v.push_back(x);
         }
         int ans = 0;
-        for (int i = 0; i < n; i++)
+        int mini = INT_MAX;
+        for (int i = n - 1; i >= 0; i--)
         {
-            auto it = upper_bound(v.begin() + i + 1, v.end(), v[i] - 1);
-            if (it - v.begin() > i)
+            if (v[i] > mini)
                 ans++;
+            mini = min(mini, v[i]);
         }
         cout << ans << endl;
     }
+    return 0;
+}
