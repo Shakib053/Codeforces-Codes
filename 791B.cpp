@@ -7,7 +7,7 @@ int main()
 {
     ll n, q;
     cin >> n >> q;
-    // vector<ll> arr(n);
+
     ll arr[n];
     for (ll i = 0; i < n; i++)
     {
@@ -16,8 +16,10 @@ int main()
         arr[i] = x;
     }
     ll sum = 0;
+    map<ll, ll> mp;
     for (ll i = 0; i < n; i++)
     {
+        mp[i] = arr[i];
         sum = sum + arr[i];
     }
     int flag = 0;
@@ -30,17 +32,14 @@ int main()
         {
             ll index, x;
             cin >> index >> x;
-            if (flag == 0)
+            if (mp[index - 1] == 0)
             {
-                sum = sum - arr[index - 1] + x;
-                arr[index - 1] = x;
+                // cout << "t " << t << " " << mp[index - 1] << endl;
+                mp[index - 1] = store;
             }
-            else
-            {
-                sum = sum - store + x;
-                arr[index - 1] = store;
-                flag = 0;
-            }
+            sum = sum - mp[index - 1] + x;
+            mp[index - 1] = x;
+
             cout << sum << endl;
         }
         else
@@ -48,9 +47,9 @@ int main()
             ll temp;
             flag = 1;
             cin >> temp;
+            mp.clear();
             store = temp;
             sum = temp * n;
-            //  fill(arr, arr + n, temp);
 
             cout << sum << endl;
         }
