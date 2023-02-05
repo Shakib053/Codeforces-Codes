@@ -34,7 +34,7 @@ int main()
             cin >> index >> x;
             if (mp[index - 1] == 0)
             {
-                // cout << "t " << t << " " << mp[index - 1] << endl;
+                cout << "t " << t << " " << mp[index - 1] << endl;
                 mp[index - 1] = store;
             }
             sum = sum - mp[index - 1] + x;

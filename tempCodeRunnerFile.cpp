@@ -1,58 +1,54 @@
-#include <bits/stdc++.h>
-#define ll long long int
-#define un unsigned
-#define mod 1000000007
+#include <iostream>
+#include <algorithm>
+#include <math.h>
+#include <set>
+#include <vector>
+
 using namespace std;
+
 int main()
 {
-    ll n, q;
-    cin >> n >> q;
-    // vector<ll> arr(n);
-    ll arr[n];
-    for (ll i = 0; i < n; i++)
+    string s;
+    cin >> s;
+    int n = s.size();
+    int q;
+    cin >> q;
+    vector<set<int>> vs(150);
+
+    for (int i = 0; i < n; i++)
     {
-        ll x;
-        cin >> x;
-        arr[i] = x;
+        vs[s[i]].insert(i + 1);
     }
-    ll sum = 0;
-    for (ll i = 0; i < n; i++)
+
+    for (int i = 0; i < q; i++)
     {
-        sum = sum + arr[i];
-    }
-    int flag = 0;
-    ll store;
-    for (ll i = 0; i < q; i++)
-    {
-        int t;
-        cin >> t;
-        if (t == 1)
+        int a;
+        cin >> a;
+        if (a == 2)
         {
-            ll index, x;
-            cin >> index >> x;
-            if (flag == 0)
+            int x, y;
+            cin >> x >> y;
+            int ans = 0;
+            set<int> st;
+
+            for (int j = 0; j < 26; j++)
             {
-                sum = sum - arr[index - 1] + x;
-                arr[index - 1] = x;
+                st = vs[j + 'a'];
+                set<int>::iterator it1;
+                it1 = st.lower_bound(x);
+                if (*it1 >= x && *it1 <= y)
+                    ans++;
             }
-            else
-            {
-                sum = sum - store + x;
-                arr[index - 1] = store;
-                flag = 0;
-            }
-            cout << sum << endl;
+            cout << ans << endl;
         }
         else
         {
-            ll temp;
-            flag = 1;
-            cin >> temp;
-            store = temp;
-            sum = temp * n;
-            //  fill(arr, arr + n, temp);
-
-            cout << sum << endl;
+            int index;
+            char ch;
+            cin >> index >> ch;
+            vs[s[index - 1]].erase(index);
+            s[index - 1] = ch;
+            vs[ch].insert(index);
         }
     }
     return 0;
